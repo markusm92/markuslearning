@@ -1,2 +1,4 @@
 class Page < ApplicationRecord
-end
+    has_rich_text :content
+  end
+  

@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_09_13_123503) do
+ActiveRecord::Schema.define(version: 2025_09_13_131704) do
 
   create_table "pages", force: :cascade do |t|
     t.string "title"
-    t.text "content"
     t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
   end
 
   create_table "posts", force: :cascade do |t|
