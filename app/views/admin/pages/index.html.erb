@@ -18,11 +18,12 @@
         <td><%= page.slug %></td>
         <td><%= page.published? ? "Published" : "Draft" %></td>
         <td>
-          <%= link_to "Edit", edit_admin_page_path(page) %> |
-          <%= link_to "Delete",
-                      admin_page_path(page),
-                      method: :delete,
-                      data: { confirm: "Are you sure?" } %>
+          <%= link_to "Edit", edit_admin_page_path(page), class: "btn btn-sm btn-secondary" %>
+          <%= button_to "Delete",
+                        admin_page_path(page),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" },
+                        class: "btn btn-sm btn-danger" %>
         </td>
       </tr>
     <% end %>
