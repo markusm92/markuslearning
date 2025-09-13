@@ -1,0 +1,25 @@
+<%= form_with(model: [:admin, @page]) do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :slug %><br>
+    <%= form.text_field :slug %>
+  </div>
+
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_area :content, rows: 10 %>
+  </div>
+
+  <div>
+    <%= form.label :published %>
+    <%= form.check_box :published %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<h1>Pages</h1>
+
+<%= link_to "New Page", new_admin_page_path, class: "btn btn-primary" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Slug</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= page.title %></td>
+        <td><%= page.slug %></td>
+        <td><%= page.published? ? "Published" : "Draft" %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_page_path(page) %> |
+          <%= link_to "Delete",
+                      admin_page_path(page),
+                      method: :delete,
+                      data: { confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
