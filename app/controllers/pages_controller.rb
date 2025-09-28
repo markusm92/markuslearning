@@ -8,5 +8,9 @@ class PagesController < ApplicationController
   # GET /pages/:id
   def show
     @page = Page.find_by(id: params[:id])
+  
+    if @page.nil? || !@page.published
+      redirect_to pages_path, alert: "Page not found or not published."
+    end
   end
 end

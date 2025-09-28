@@ -1,18 +1,10 @@
+# config/routes.rb
+
 Rails.application.routes.draw do
   # -------------------------------
-  # Devise routes for user sessions
+  # Devise routes for users
   # -------------------------------
-  devise_for :users, controllers: {
-    sessions: 'users/sessions'
-  }
-
-  # -------------------------------
-  # ActiveStorage routes (required to serve attachments)
-  # -------------------------------
-  # This mounts all ActiveStorage routes needed for blobs, variants, and attachments
-  # Must be placed **before any routes that might match /rails/active_storage/...**
-  # so the requests are routed correctly.
-  mount Rails.application.routes.url_helpers => "/rails/active_storage"
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
   # -------------------------------
   # Homepage for logged-in users
@@ -32,12 +24,18 @@ Rails.application.routes.draw do
   # Admin namespace
   # -------------------------------
   namespace :admin do
-    resources :pages # index, show, new, create, edit, update, destroy
-    root to: "pages#index" # /admin goes to pages dashboard
+    resources :pages
+    root to: "pages#index"
   end
 
   # -------------------------------
-  # Public content pages (show only)
+  # Public content pages (user-facing)
   # -------------------------------
-  resources :pages, only: [:show, :index] # add index for listing pages
+  resources :pages, only: [:show, :index]
+
+  # -------------------------------
+  # Mount ActionText engine for serving attachments
+  # Needed to render images in rich text
+  # -------------------------------
+  mount ActionText::Engine => '/action_text'
 end
