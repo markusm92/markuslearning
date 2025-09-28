@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pages/show'
   devise_for :users
 
   # Homepage for logged-in users
