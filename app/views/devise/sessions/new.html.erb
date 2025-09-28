@@ -26,8 +26,10 @@
 
 <%= render "devise/shared/links" %>
 
-<%# ---------- ADMIN LOGIN LINK ---------- %>
-<p>
-  Are you an admin? 
-  <%= link_to "Click here", new_user_session_path(admin: true) %>
-</p>
+<%# ---------- ADMIN LOGIN LINK (hidden if already clicked) ---------- %>
+<% unless @admin_login %>
+  <p>
+    Are you an admin? 
+    <%= link_to "Click here", new_user_session_path(admin: true) %>
+  </p>
+<% end %>
