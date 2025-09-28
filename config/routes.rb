@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   end
 
   # Public content pages (show only)
-  resources :pages, only: [:show]
+  resources :pages, only: [:show, :index] # <-- add :index here for user-facing pages
 end
