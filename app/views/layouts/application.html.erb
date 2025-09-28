@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Markuslearning</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<body>
+  <!-- Site header -->
+  <header style="text-align: center; padding: 20px; background-color: #e0e0e0; border-bottom: 1px solid #ccc;">
+    <h1 style="margin: 0; font-size: 2em; color: #333;">MarkusLearning CMS</h1>
+  </header>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <!-- Navigation bar -->
+  <nav style="padding: 10px 20px; background-color: #f0f0f0; margin-bottom: 20px; text-align: center;">
+    <% if user_signed_in? %>
+      <%= link_to "Home", authenticated_root_path, style: "margin: 0 10px; color: #007bff; text-decoration: none;" %>
+      <%= link_to "Pages", pages_path, style: "margin: 0 10px; color: #007bff; text-decoration: none;" %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, style: "margin: 0 10px; color: #ff4d4d; text-decoration: none;" %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, style: "margin: 0 10px; color: #007bff; text-decoration: none;" %>
+      <%= link_to "Welcome Page", unauthenticated_root_path, style: "margin: 0 10px; color: #007bff; text-decoration: none;" %>
+    <% end %>
+  </nav>
 
-  <body>
-    <!-- Navigation bar -->
-    <nav style="padding: 10px; background-color: #f0f0f0; margin-bottom: 20px;">
-      <% if user_signed_in? %>
-        <%= link_to "Home", authenticated_root_path %> |
-        <%= link_to "Pages", pages_path %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Login", new_user_session_path %> |
-        <%= link_to "Welcome Page", unauthenticated_root_path %>
-      <% end %>
-    </nav>
+  <!-- Main page content --> 
+  <%= yield %>
 
-    <%= yield %>
-  </body>
-</html>
+  <!-- Footer -->
+  <footer style="text-align: center; padding: 20px; background-color: #f0f0f0; border-top: 1px solid #ccc; margin-top: 40px;">
+    &copy; <%= Time.now.year %> MarkusLearning
+  </footer>
+</body>
