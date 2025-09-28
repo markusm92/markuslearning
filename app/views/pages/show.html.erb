@@ -1,14 +1,55 @@
-<div style="max-width: 800px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #fafafa;">
-  <!-- Page title -->
-  <h1 style="font-size: 2em; margin-bottom: 20px; color: #333;"><%= @page.title %></h1>
+<%# ---------------------------------------------------------------------- %>
+<%# Pages#show view - displays a single page with title, content, and images %>
+<%# ---------------------------------------------------------------------- %>
 
-  <!-- Page content -->
-  <div style="line-height: 1.6; color: #555;">
+<%# Main container: centered, with padding, border, and background for readability %>
+<div style="max-width: 800px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #fafafa;">
+
+  <%# ---------------------------------------------------------------------- %>
+  <%# Page title %>
+  <%# Large font, dark color, margin at bottom %>
+  <%# ---------------------------------------------------------------------- %>
+  <h1 style="font-size: 2em; margin-bottom: 20px; color: #333;">
+    <%= @page.title %>
+  </h1>
+
+  <%# ---------------------------------------------------------------------- %>
+  <%# Page content (ActionText content includes text + images) %>
+  <%# Added class 'page-content' for styling images and text below %>
+  <%# ---------------------------------------------------------------------- %>
+  <div class="page-content" style="line-height: 1.6; color: #555;">
     <%= @page.content %>
   </div>
 
-  <!-- Back link -->
+  <%# ---------------------------------------------------------------------- %>
+  <%# Back link to pages index %>
+  <%# Styled as subtle text link %>
+  <%# ---------------------------------------------------------------------- %>
   <p style="margin-top: 30px;">
     <%= link_to "← Back to all pages", pages_path, style: "text-decoration: none; color: #007bff;" %>
   </p>
 </div>
+
+<%# ---------------------------------------------------------------------- %>
+<%# Inline CSS to make ActionText images responsive %>
+<%# Optional: move this to application.css for cleaner code %>
+<%# ---------------------------------------------------------------------- %>
+<style>
+  .page-content img {
+    max-width: 100%;   /* Ensure image does not exceed container width */
+    height: auto;      /* Maintain aspect ratio */
+    display: block;
+    margin: 20px 0;    /* Spacing above and below images */
+  }
+
+  .page-content p {
+    margin-bottom: 1em;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .page-content a {
+    color: #007bff;
+    text-decoration: underline;
+  }
+</style>
