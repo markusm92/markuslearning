@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get 'pages/show'
-  devise_for :users
+  # Use our custom sessions controller for Devise
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
   # Homepage for logged-in users
   authenticated :user do
